@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../js/bootstrap/css/bootstrap.min.css">
+    <link rel="icon" href="../js/shop/assets/img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../js/shop/css/webbase.css" />
+    <link rel="stylesheet" type="text/css" href="../js/shop/css/pages-JD-index.css" />
+    <link rel="stylesheet" type="text/css" href="../js/shop/css/widget-jquery.autocomplete.css" />
+    <link rel="stylesheet" type="text/css" href="../js/shop/css/widget-cartPanelView.css" />
+</head>
+<body>
+
+<h1>用户未激活，<a onclick="sendMail()">点击发送激活邮箱</a></h1>
+
+<script src="../js/jquery-3.3.1.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/jquery.cookie.min.js"></script>
+<script src="../js/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/shop/js/pages/index.js"></script>
+<script>
+
+    function sendMail(){
+        var v_memberData = $.cookie("memberData");
+        var v_param = eval('('+v_memberData+')');
+        console.log(v_param);
+        $.ajax({
+            type:"post",
+            url:server_url+"/sendMail",
+            data:v_param,
+            success:function (res) {
+                if(res.code==200){
+                    // alert("33");
+                    location.href="login.html";
+                }
+            }
+        })
+    }
+
+</script>
+</body>
+</html>

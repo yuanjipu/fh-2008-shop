@@ -1,0 +1,19 @@
+eureka:
+  client:
+    register-with-eureka: true #注册到Eureka的注册中心
+    fetch-registry: true #获取注册实例列表
+    service-url:
+      defaultZone: http://replica2:8002/eureka/,http://replica1:8001/eureka/ #配置注册中心地址
+spring:
+  application:
+    name: shop-cart-api
+server:
+  port: 8089
+
+sku:
+  count:
+    limit: 10
+
+
+
+

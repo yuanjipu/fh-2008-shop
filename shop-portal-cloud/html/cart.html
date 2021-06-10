@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <title>我的购物车</title>
+
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+
+    <link rel="stylesheet" href="../js/bootstrap/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="../js/shop/css/webbase.css" />
+    <link rel="stylesheet" type="text/css" href="../js/shop/css/pages-cart.css" />
+</head>
+
+<body>
+<div id="navDiv"></div>
+<!--head-->
+<div class="cart py-container">
+    <!--All goods-->
+    <div class="allgoods">
+        <h4>全部商品</h4>
+        <div class="cart-main">
+            <div class="yui3-g cart-th">
+                <div class="yui3-u-1-4"><input type="checkbox" name="" id="" value="" /> 全部</div>
+                <div class="yui3-u-1-4">商品</div>
+                <div class="yui3-u-1-8">单价（元）</div>
+                <div class="yui3-u-1-8">数量</div>
+                <div class="yui3-u-1-8">小计（元）</div>
+                <div class="yui3-u-1-8">操作</div>
+            </div>
+            <div class="cart-item-list" id="cartInfoDiv">
+                <div class="cart-body" id="cartBody"></div>
+            </div>
+        </div>
+        <div class="cart-tool">
+            <div class="select-all">
+                <input type="checkbox" name="" value="" />
+                <span>全选</span>
+            </div>
+            <div class="option">
+                <a href="#none" onclick="deleteBatch()">删除选中的商品</a>
+                <a href="#none">移到我的关注</a>
+                <a href="#none">清除下柜商品</a>
+            </div>
+            <div class="toolbar" id="cartTotalInfoDiv">
+
+			</div>
+        </div>
+        <div class="clearfix"></div>
+
+    </div>
+</div>
+
+<div id="cartDiv" style="display: none">
+
+        <div class="cart-list">
+            <ul class="goods-list yui3-g">
+                <li class="yui3-u-1-24">
+                    <input type="checkbox" name="ids" value="##skuId##" />
+                </li>
+                <li class="yui3-u-11-24">
+                    <div class="good-item">
+                        <div class="item-img"><img src="##skuImage##" /></div>
+                        <div class="item-msg">##skuName##</div>
+                    </div>
+                </li>
+
+                <li class="yui3-u-1-8"><span class="price">##price##</span></li>
+                <li class="yui3-u-1-8">
+                    <a href="javascript:void(0)" onclick="buy('##skuId##',-1)" class="increment mins">-</a>
+                    <input autocomplete="off" type="text" value="##count##" minnum="1" class="itxt" />
+                    <a href="javascript:void(0)" onclick="buy('##skuId##',1)" class="increment plus">+</a>
+                </li>
+                <li class="yui3-u-1-8"><span class="sum">##subPrice##</span></li>
+                <li class="yui3-u-1-8">
+                    <a href="#none" onclick="deleteCart('##skuId##')">删除</a><br/>
+                    <a href="#none">移到我的关注</a>
+                </li>
+            </ul>
+        </div>
+</div>
+<div id="cartTotalDiv" style="display: none">
+    <div class="chosed">已选择<span>##totalCount##</span>件商品</div>
+    <div class="sumprice">
+        <span><em>总价（不含运费） ：</em><i class="summoney">¥##totalPrice##</i></span>
+        <span><em>已节省：</em><i>-¥20.00</i></span>
+    </div>
+    <div class="sumbtn">
+        <a class="sum-btn" href="getOrderInfo.html">结算</a>
+    </div>
+</div>
+<!-- 底部栏位 -->
+<!--页面底部-->
+<div class="clearfix footer">
+    <div class="py-container">
+        <div class="footlink">
+            <div class="Mod-service">
+                <ul class="Mod-Service-list">
+                    <li class="grid-service-item intro  intro1">
+
+                        <i class="serivce-item fl"></i>
+                        <div class="service-text">
+                            <h4>正品保障</h4>
+                            <p>正品保障，提供发票</p>
+                        </div>
+
+                    </li>
+                    <li class="grid-service-item  intro intro2">
+
+                        <i class="serivce-item fl"></i>
+                        <div class="service-text">
+                            <h4>正品保障</h4>
+                            <p>正品保障，提供发票</p>
+                        </div>
+
+                    </li>
+                    <li class="grid-service-item intro  intro3">
+
+                        <i class="serivce-item fl"></i>
+                        <div class="service-text">
+                            <h4>正品保障</h4>
+                            <p>正品保障，提供发票</p>
+                        </div>
+
+                    </li>
+                    <li class="grid-service-item  intro intro4">
+
+                        <i class="serivce-item fl"></i>
+                        <div class="service-text">
+                            <h4>正品保障</h4>
+                            <p>正品保障，提供发票</p>
+                        </div>
+
+                    </li>
+                    <li class="grid-service-item intro intro5">
+
+                        <i class="serivce-item fl"></i>
+                        <div class="service-text">
+                            <h4>正品保障</h4>
+                            <p>正品保障，提供发票</p>
+                        </div>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix Mod-list">
+                <div class="yui3-g">
+                    <div class="yui3-u-1-6">
+                        <h4>购物指南</h4>
+                        <ul class="unstyled">
+                            <li>购物流程</li>
+                            <li>会员介绍</li>
+                            <li>生活旅行/团购</li>
+                            <li>常见问题</li>
+                            <li>购物指南</li>
+                        </ul>
+
+                    </div>
+                    <div class="yui3-u-1-6">
+                        <h4>配送方式</h4>
+                        <ul class="unstyled">
+                            <li>上门自提</li>
+                            <li>211限时达</li>
+                            <li>配送服务查询</li>
+                            <li>配送费收取标准</li>
+                            <li>海外配送</li>
+                        </ul>
+                    </div>
+                    <div class="yui3-u-1-6">
+                        <h4>支付方式</h4>
+                        <ul class="unstyled">
+                            <li>货到付款</li>
+                            <li>在线支付</li>
+                            <li>分期付款</li>
+                            <li>邮局汇款</li>
+                            <li>公司转账</li>
+                        </ul>
+                    </div>
+                    <div class="yui3-u-1-6">
+                        <h4>售后服务</h4>
+                        <ul class="unstyled">
+                            <li>售后政策</li>
+                            <li>价格保护</li>
+                            <li>退款说明</li>
+                            <li>返修/退换货</li>
+                            <li>取消订单</li>
+                        </ul>
+                    </div>
+                    <div class="yui3-u-1-6">
+                        <h4>特色服务</h4>
+                        <ul class="unstyled">
+                            <li>夺宝岛</li>
+                            <li>DIY装机</li>
+                            <li>延保服务</li>
+                            <li>品优购E卡</li>
+                            <li>品优购通信</li>
+                        </ul>
+                    </div>
+                    <div class="yui3-u-1-6">
+                        <h4>帮助中心</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="Mod-copyright">
+                <ul class="helpLink">
+                    <li>关于我们<span class="space"></span></li>
+                    <li>联系我们<span class="space"></span></li>
+                    <li>关于我们<span class="space"></span></li>
+                    <li>商家入驻<span class="space"></span></li>
+                    <li>营销中心<span class="space"></span></li>
+                    <li>友情链接<span class="space"></span></li>
+                    <li>关于我们<span class="space"></span></li>
+                    <li>营销中心<span class="space"></span></li>
+                    <li>友情链接<span class="space"></span></li>
+                    <li>关于我们</li>
+                </ul>
+                <p>地址：郑州市福元路和英协路交叉口，华悦时间广场</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!--页面底部END-->
+<script src="../js/jquery-3.3.1.js"></script>
+<script src="../js/bootstrap/js/bootstrap.min.js"></script>
+<script src="../js/jquery.cookie.min.js"></script>
+<script src="../js/common.js"></script>
+
+<script>
+
+    $(function () {
+        initCart();
+    })
+    
+    function deleteBatch() {
+        var v_ids = [];
+        $("input[name='ids']:checkbox:checked").each(function () {
+            v_ids.push(this.value);
+        })
+        $.ajax({
+            type:"delete",
+            url:"http://localhost:9000/cart/api"+"/carts/deleteBatchCart",
+            data:{"skuIds":v_ids.join(",")},
+            beforeSend:function(xhr){
+                var v_token = $.cookie("token");
+                xhr.setRequestHeader("x-auth",v_token);
+            },
+            success:function (res) {
+                if(res.code==200){
+                    initCart();
+                }
+            }
+        })
+    }
+
+    function buy(skuId,count) {
+        var v_param={};
+        v_param.count=count;
+        v_param.skuId=skuId;
+        $.ajax({
+            type:"post",
+            url:"http://localhost:9000/cart/api"+"/carts/addCartItem",
+            data:v_param,
+            beforeSend:function(xhr){
+                var v_token = $.cookie("token");
+                xhr.setRequestHeader("x-auth",v_token);
+            },
+            success:function (res) {
+                if(res.code==200){
+                    initCart();
+                }else if(res.code==7003){
+                    alert(res.msg);
+                }
+            }
+        })
+    }
+
+    function initCart() {
+        $.ajax({
+            type:"get",
+            url:"http://localhost:9000/cart/api"+"/carts/findCart",
+            beforeSend:function(xhr){
+                var v_token = $.cookie("token");
+                xhr.setRequestHeader("x-auth",v_token);
+            },
+            success:function (res) {
+                console.log(res);
+                if(res.code==200){
+                    if(!res.data){
+                        $("#cartBody").html("<h1  style='text-align: center'>请先<a href='index.html'>购买商品</a></h1>");
+                        return;
+                    }
+                    var v_cartItemVoList = res.data.cartItemVoList;
+                    var v_cartVoList = res.data;
+                    console.log(v_cartVoList);
+                    var v_html="";
+                    for (const v_cartItemVo of v_cartItemVoList) {
+                        v_html += $("#cartDiv").html().replace(/##skuImage##/g,v_cartItemVo.skuImage)
+                            .replace(/##skuName##/g,v_cartItemVo.skuName)
+                            .replace(/##price##/g,v_cartItemVo.price)
+                            .replace(/##skuId##/g,v_cartItemVo.skuId)
+                            .replace(/##subPrice##/g,v_cartItemVo.subPrice)
+                            .replace(/##count##/g,v_cartItemVo.count);
+                    }
+                    $("#cartBody").html(v_html);
+                    $("#cartTotalInfoDiv").html($("#cartTotalDiv").html().replace(/##totalCount##/g,v_cartVoList.totalCount)
+                .replace(/##totalPrice##/g,v_cartVoList.totalPrice));
+                }else if(res.code==5102 || res.code==5105 || res.code==5107){
+                    location.href="login.html";
+                }
+            }
+        })
+    }
+
+    function deleteCart(skuId) {
+        $.ajax({
+            type:"delete",
+            url:"http://localhost:9000/cart/api"+"/carts/deleteCart",
+            data:{"skuId":skuId},
+            beforeSend:function(xhr){
+                var v_token = $.cookie("token");
+                xhr.setRequestHeader("x-auth",v_token);
+            },
+            success:function (res) {
+                if(res.code==200){
+                    initCart();
+                }
+            }
+
+        })
+    }
+</script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="shop-api-feign-service" />
+        <module name="shop-api-model" />
+        <module name="shop-cart-api" />
+        <module name="shop-cate-api" />
+        <module name="shop-gateway" />
+        <module name="shop-goods-api" />
+        <module name="shop-member-api" />
+        <module name="shop-reg-center" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="shop-api-feign-service" target="1.8" />
+      <module name="shop-api-model" target="1.8" />
+      <module name="shop-cart-api" target="1.8" />
+      <module name="shop-cate-api" target="1.8" />
+      <module name="shop-cloud" target="1.8" />
+      <module name="shop-gateway" target="1.8" />
+      <module name="shop-goods-api" target="1.8" />
+      <module name="shop-member-api" target="1.8" />
+      <module name="shop-reg-center" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

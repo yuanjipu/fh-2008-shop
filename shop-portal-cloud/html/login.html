@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <link rel="stylesheet" href="../js/bootstrap/css/bootstrap.min.css">
+    <link rel="icon" href="../js/shop/assets/img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../js/shop/css/webbase.css" />
+    <link rel="stylesheet" type="text/css" href="../js/shop/css/pages-JD-index.css" />
+    <link rel="stylesheet" type="text/css" href="../js/shop/css/widget-jquery.autocomplete.css" />
+    <link rel="stylesheet" type="text/css" href="../js/shop/css/widget-cartPanelView.css" />
+    <title>登录</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h1 class="panel-title">欢迎登录<small>&nbsp;&nbsp;&nbsp;飞狐登电商台</small></h1>
+                </div>
+                <div class="col-sm-7">
+                    <div class="panel-body">
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-addon">会员名:</span>
+                            <input type="text" id="MemberName" class="form-control" placeholder="请输入会员名" value="admin" aria-describedby="sizing-addon1">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-7">
+                    <div class="panel-body">
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-addon">密码:</span>
+                            <input type="text" id="password" class="form-control" placeholder="请输入密码" value="111" aria-describedby="sizing-addon1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" onclick="login()" class="btn btn-primary btn-lg">点击登录</button>
+        <button type="button" onclick="location.href='forgetPassword.html'" class="btn btn-link">找回密码</button>
+    </div>
+</div>
+
+
+
+
+<script src="../js/jquery-3.3.1.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/jquery.cookie.min.js"></script>
+<script src="../js/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/shop/js/pages/index.js"></script>
+
+<script>
+    function login(){
+        var MemberName = $("#MemberName").val();
+        var password = $("#password").val();
+        $.ajax({
+            type:"post",
+            url:"http://localhost:9000/member/api/members/login",
+            data:{
+                "memberName":MemberName,
+                "password":password,
+            },
+            success:function (res) {
+                if(res.code==200){
+                    console.log(res);
+                    $.cookie("token",res.data);
+                    location.href="index.html";
+                }else if(res.code==5106){
+                    console.log(res);
+                    let v_memberData = JSON.stringify(res.data);
+                    $.cookie("memberData" ,v_memberData);
+                    location.href="active.html";
+                }else{
+                    alert(res.msg);
+                }
+            }
+        })
+    }
+
+</script>
+
+</body>
+</html>
