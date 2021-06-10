@@ -41,6 +41,7 @@ public class IMemberServiceImpl implements IMemberService {
 
         //判断会员是否存在
         if(memberDB==null){
+            System.out.println("哒哒哒哒哒哒多多多");
             return ServerResponse.error(ResponseEnum.MEMBER_LOGIN_MEMBER_NAME_IS_ERROR);
         }
 
